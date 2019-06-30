@@ -3,7 +3,7 @@
     <module name="cordapp-example.workflows-kotlin.test" />
     <extension name="coverage">
       <pattern>
-        <option name="PATTERN" value="com.example.contract.*" />
+        <option name="PATTERN" value="com.fixnix.contract.*" />
         <option name="ENABLED" value="true" />
       </pattern>
     </extension>

@@ -3,7 +3,7 @@
     <module name="com.example.workflows-java.integrationTest" />
     <extension name="coverage">
       <pattern>
-        <option name="PATTERN" value="com.example.*" />
+        <option name="PATTERN" value="com.fixnix.*" />
         <option name="ENABLED" value="true" />
       </pattern>
     </extension>
