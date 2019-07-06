@@ -116,3 +116,6 @@ task deployNodes(type: Cordform, dependsOn: ['jar']) {
         rpcUsers = [[user: "user1", "password": "test", "permissions": ["ALL"]]]
     }
 }
+
+
+//flow start com.fixnix.flow.ComplaintCreateFlow whistle: {tipNo: "1234", encryptedSecret: "yzf", incidentType: "class", association: "maths", awareOf: "Yes", personInvolved: "123", monetorValue: "10000", date: "ersss", auditAware: "tyus", generalNature: "Nature", occurancePlace: "test", blower: "tesr", company: "O=Freshworks,L=Paris,C=FR", reviewer: "O=Fixnix,L=London,C=GB"}

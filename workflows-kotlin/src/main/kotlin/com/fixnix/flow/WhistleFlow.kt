@@ -79,7 +79,7 @@ object ComplaintCreateFlow {
             val fullysignedtx=subFlow(CollectSignaturesFlow(partiallysignedtx,setOf(otherPartyFlow), Companion.GATHERING_SIGNATURE.childProgressTracker()))
 
             progressTracker.currentStep= FINALYZING_TRANSACTION
-            return subFlow(FinalityFlow(fullysignedtx, Companion.FINALYZING_TRANSACTION.childProgressTracker()))
+            return subFlow(FinalityFlow(fullysignedtx, setOf(otherPartyFlow), Companion.FINALYZING_TRANSACTION.childProgressTracker() ))
 
         }
     }
@@ -88,15 +88,15 @@ object ComplaintCreateFlow {
     {
         @Suspendable
         override fun call(): SignedTransaction {
-            val signedTransactionFlow=object :SignTransactionFlow(otherPartyFlow){
+            val signedTransactionFlow=subFlow(object :SignTransactionFlow(otherPartyFlow){
                 override fun checkTransaction(stx: SignedTransaction) = requireThat {
                     val data=stx.tx.outputs.single().data
                     val complaint=data as WhistleState
                     "The compalaint monetory value  should not be less than zero" using(complaint.monetorValue!="null")
 
                 }
-            }
-            return subFlow(signedTransactionFlow)
+            })
+            return subFlow(ReceiveFinalityFlow(otherPartyFlow,expectedTxId = signedTransactionFlow.id));
         }
     }
 }
